@@ -1,0 +1,37 @@
+{
+  "name": "@leonardvandriel/interact",
+  "version": "0.0.0",
+  "description": "Interactive node console, extended",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taptalk/interact.git"
+  },
+  "keywords": [
+    "interactive",
+    "console",
+    "REPL"
+  ],
+  "author": "Leo Vandriel",
+  "license": "BSD-3-Clause",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "CHANGELOG.md",
+    "index.js"
+  ],
+  "bugs": {
+    "url": "https://github.com/taptalk/interact/issues"
+  },
+  "homepage": "https://github.com/taptalk/interact#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  },
+  "directories": {
+    "test": "test"
+  }
+}
