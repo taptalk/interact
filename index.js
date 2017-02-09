@@ -2,9 +2,15 @@
 
 module.exports = new class {
     constructor() {
+        this.clear()
+    }
+
+    clear() {
         this.require = {}
         this.runs = []
         this.persists = []
+        this.preloads = []
+        this.postloads = []
     }
 
     import(pairs) {
@@ -22,13 +28,27 @@ module.exports = new class {
         this.persists.push(this.stringfy(func))
     }
 
+    preload(func) {
+        this.preloads.push(this.stringfy(func))
+    }
+
+    postload(func) {
+        this.postloads.push(this.stringfy(func))
+    }
+
     compose() {
         let buffer = ''
         for (let key in this.require) {
             let path = this.require[key]
             buffer += this.stringfy(_ => _C1_ = require('_C2_'), key, path) + '\n'
         }
+        for (let i in this.postloads) {
+            buffer += this.postloads[i] + '\n'
+        }
         let b = ''
+        for (let i in this.preloads) {
+            b += this.preloads[i] + '\n'
+        }
         for (let i in this.persists) {
             b += this.stringfy(_ => { const _C1_ = _C2_ }, `p${i}`, this.persists[i]) + '\n'
         }
@@ -40,6 +60,9 @@ module.exports = new class {
         }
         for (let i in this.persists) {
             b += this.stringfy(_ => _C1_ = _C2_, this.persists[i], `p${i}`) + '\n'
+        }
+        for (let i in this.postloads) {
+            b += this.postloads[i] + '\n'
         }
         buffer += this.stringfy(_ => reload = () => {
             _C_
