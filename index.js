@@ -53,7 +53,7 @@ module.exports = new class {
     }
 
     generate() {
-        const buffer = compose()
+        const buffer = this.compose()
         // console.error(buffer)
         console.log(buffer)
     }
