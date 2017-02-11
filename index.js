@@ -45,7 +45,12 @@ module.exports = new class {
         }
         for (let key in config.imports) {
             try {
-                let r = require(config.imports[key])
+                let path = config.imports[key]
+                if (path && path.startsWith('.')) {
+                    const prefix = config.requirePrefix !== undefined ? config.requirePrefix : '../../../'
+                    path = prefix + path
+                }
+                let r = require(path)
                 context[key] = r.default || r
             } catch (e) { console.log(e) || reload || process.exit() }
         }
@@ -81,10 +86,7 @@ module.exports = new class {
 
     prepareConfig(config) {
         if (config.capturePromises) {
-            if (!config.writer) {
-                config.writer = output => this.string(output, config.useColors)
-            }
-            const writer = config.writer
+            const writer = config.writer || (output => this.string(output, config.useColors))
             config.writer = output => this.capturePromise(output, config.prompt, writer)
         }
         return config
