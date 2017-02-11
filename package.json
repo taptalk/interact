@@ -4,7 +4,8 @@
   "description": "Interactive node console, extended",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter spec"
+    "test": "mocha --reporter spec",
+    "console": "node index.cli.js"
   },
   "repository": {
     "type": "git",

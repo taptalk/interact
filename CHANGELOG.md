@@ -3,6 +3,12 @@ Change Log
 
 ### master (untagged)
 
+### 0.1.0 (2017-02-11)
+
+* Move to repl
+
+### 0.0.1 (2017-02-09)
+
 * Add preload and postload
 
 ### 0.0.0 (2017-02-09)
