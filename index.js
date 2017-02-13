@@ -155,13 +155,22 @@ module.exports = new class {
             action: history,
         })
 
-        const list = () => {
+        const imports = () => {
             const text = util.inspect(config.imports || {})
             this.print(text || {}, 90, config.prompt)
         }
-        server.defineCommand('list', {
+        server.defineCommand('imports', {
             help: 'List imports',
-            action: list,
+            action: imports,
+        })
+
+        const conf = () => {
+            const text = util.inspect(config || {})
+            this.print(text || {}, 90, config.prompt)
+        }
+        server.defineCommand('config', {
+            help: 'List full configuration',
+            action: conf,
         })
     }
 
