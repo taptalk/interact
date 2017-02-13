@@ -26,6 +26,13 @@ module.exports = new class {
 
     // initialization
 
+    pathForRequire(path, prefix) {
+        if (path && path.startsWith('.')) {
+            path = (prefix !== undefined ? prefix : '../../../') + path
+        }
+        return path
+    }
+
     loadConfig(context, config, reload) {
         const mem = []
         if (reload) {
@@ -40,16 +47,13 @@ module.exports = new class {
                 } catch (e) { console.log(e) }
             }
             for (let key in config.imports) {
-                delete require.cache[require.resolve(config.imports[key])]
+                let path = this.pathForRequire(config.imports[key], config.requirePrefix)
+                delete require.cache[require.resolve(path)]
             }
         }
         for (let key in config.imports) {
             try {
-                let path = config.imports[key]
-                if (path && path.startsWith('.')) {
-                    const prefix = config.requirePrefix !== undefined ? config.requirePrefix : '../../../'
-                    path = prefix + path
-                }
+                let path = this.pathForRequire(config.imports[key], config.requirePrefix)
                 let r = require(path)
                 context[key] = r.default || r
             } catch (e) { console.log(e) || reload || process.exit() }
