@@ -78,10 +78,12 @@ module.exports = new class {
         }
     }
 
-    capturePromise(output, prompt, writer) {
+    capturePromise(output, prompt, writer, useColors) {
         const promise = output && typeof output.then === 'function'
         if (promise) {
-            output.then(result => this.print(writer(result), 0, prompt))
+            output
+                .then(result => this.print(writer(result), 0, prompt))
+                .catch(error => this.print(writer(error), useColors ? 91 : 0, prompt))
             return this.color('promised', 90)
         } else {
             return writer(output)
@@ -91,7 +93,7 @@ module.exports = new class {
     prepareConfig(config) {
         if (config.capturePromises) {
             const writer = config.writer || (output => this.string(output, config.useColors))
-            config.writer = output => this.capturePromise(output, config.prompt, writer)
+            config.writer = output => this.capturePromise(output, config.prompt, writer, config.useColors)
         }
         return config
     }
