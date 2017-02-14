@@ -1,6 +1,6 @@
 {
   "name": "@leonardvandriel/interact",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Interactive node console, extended",
   "main": "index.js",
   "scripts": {
