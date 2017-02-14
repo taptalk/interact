@@ -14,24 +14,19 @@ With interact you can customize your interactive node console with functionality
 
 Add console script to `package.json`:
     "scripts": {
-      "console": "node -i -e \"$(node -e \"require('./index.cli.js')\")\""
+      "console": "node interact.js"
     },
 
 And for convenience, alias `npm run-script console` (add this to ~/.bashrc):
 
 	alias console="npm run-script console"
 
+Create a configuration file `interact.js`:
+
+    require('@leonardvandriel/interact').generate()
+
 
 ## Usage
-
-Create a configuration file `index.cli.js`:
-
-    const interact = require('@leonardvandriel/interact')
-    interact.import({
-        fs: 'fs',
-    })
-    interact.generate()
-
 
 Start the console:
 
@@ -41,9 +36,32 @@ Or if you did not alias:
 
     npm run-script console
 
-Now `fs` is available in the console:
 
-    > fs.readFileSync('index.cli.js', 'utf8')
+## Configuration
+
+All configuration is passed upon invoking `interact.start(..)` from `interact.js`.
+
+
+# Importing modules
+
+To import (require) modules, add `imports` to the configuration:
+
+    const interact = require('@leonardvandriel/interact')
+    const config = {}
+    config.imports = { fs: 'fs' }
+    interact.start(config)
+
+Start the console. Now `fs` is available:
+
+    > fs.readFileSync('LICENSE', 'utf8')
+
+
+# Configure REPL directly
+
+Internally we use Node's REPL module (https://nodejs.org/api/repl.html)[]. The configuration is passed on to `repl.start(..)`. For example, to prevent outputting `undefined` as return value of a command, add:
+
+    config.ignoreUndefined = true
+
 
 ## Tests
 
