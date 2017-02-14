@@ -1,4 +1,4 @@
-<img src="icon.jpg" alt="Flame Icon" width="72"/>
+<img src="icon.png" alt="Interact Icon" width="72"/>
 
 
 Interact
@@ -13,6 +13,7 @@ With interact you can customize your interactive node console with functionality
     npm install @leonardvandriel/interact --save-dev
 
 Add console script to `package.json`:
+
     "scripts": {
       "console": "node interact.js"
     },
@@ -23,7 +24,9 @@ And for convenience, alias `npm run-script console` (add this to ~/.bashrc):
 
 Create a configuration file `interact.js`:
 
-    require('@leonardvandriel/interact').generate()
+    const interact = require('@leonardvandriel/interact')
+    const config = {}
+    interact.start(config)
 
 
 ## Usage
@@ -39,26 +42,23 @@ Or if you did not alias:
 
 ## Configuration
 
-All configuration is passed upon invoking `interact.start(..)` from `interact.js`.
+All configuration is passed upon invoking `interact.start(..)` from `interact.js`. See example [interact.js](interact.js).
 
 
-# Importing modules
+### Importing modules
 
 To import (require) modules, add `imports` to the configuration:
 
-    const interact = require('@leonardvandriel/interact')
-    const config = {}
     config.imports = { fs: 'fs' }
-    interact.start(config)
 
 Start the console. Now `fs` is available:
 
     > fs.readFileSync('LICENSE', 'utf8')
 
 
-# Configure REPL directly
+### Configure REPL directly
 
-Internally we use Node's REPL module (https://nodejs.org/api/repl.html)[]. The configuration is passed on to `repl.start(..)`. For example, to prevent outputting `undefined` as return value of a command, add:
+Internally we use Node's [REPL](https://nodejs.org/api/repl.html) module. The configuration is passed on to `repl.start(..)`. For example, to prevent outputting `undefined` as return value of a command, add:
 
     config.ignoreUndefined = true
 
