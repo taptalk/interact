@@ -62,15 +62,15 @@ module.exports = new class {
                     mem[i] = config.persists[i].get(context)
                 } catch (e) { console.log(e) }
             }
-            for (let i in config.preloads) {
-                try {
-                    config.preloads[i](context)
-                } catch (e) { console.log(e) }
-            }
             for (let key in config.imports) {
                 let path = this.pathForRequire(config.imports[key], config.requirePrefix)
                 delete require.cache[require.resolve(path)]
             }
+        }
+        for (let i in config.preloads) {
+            try {
+                config.preloads[i](context)
+            } catch (e) { console.log(e) || reload || process.exit() }
         }
         for (let key in config.imports) {
             try {
