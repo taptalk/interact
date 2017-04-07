@@ -24,6 +24,27 @@ module.exports = new class {
         return color ? this.print(this.color(line, color), 0, prompt) : this.put(`\r${line}\n${prompt || '> '}`)
     }
 
+    // utilities
+
+    list(path, suffixes, regex) {
+        let list = fs.readdirSync(path)
+        if (suffixes) {
+            suffixes = (Array.isArray(suffixes) ? suffixes : [suffixes]).sort((a, b) => b.length - a.length)
+            list = list.map(f => {
+                for (let i in suffixes) {
+                    const suffix = suffixes[i]
+                    if (f.endsWith(suffix)) {
+                        return f.substring(0, f.length - suffix.length)
+                    }
+                }
+            }).filter(f => f)
+        }
+        if (regex) {
+            list = list.filter(f => f.match(regex))
+        }
+        return list
+    }
+
     // initialization
 
     pathForRequire(path, prefix) {
