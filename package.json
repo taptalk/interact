@@ -2,7 +2,7 @@
   "name": "@leonardvandriel/interact",
   "version": "0.1.1",
   "description": "Interactive node console, extended",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "mocha --reporter spec",
     "console": "node interact.js"
@@ -22,7 +22,7 @@
     "LICENSE",
     "README.md",
     "CHANGELOG.md",
-    "index.js"
+    "lib/index.js"
   ],
   "bugs": {
     "url": "https://github.com/taptalk/interact/issues"

@@ -1,5 +1,5 @@
 const expect = require('chai').expect
-const interact = require('../index')
+const interact = require('../lib/index')
 
 beforeEach(() => {
 })

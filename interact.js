@@ -1,6 +1,6 @@
 'use strict'
 
-const interact = require('./index.js')
+const interact = require('./lib/index.js')
 
 const config = {}
 
