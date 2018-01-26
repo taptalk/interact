@@ -13,6 +13,6 @@ config.historyFile = '.node_repl_history'
 config.historyLength = 100
 config.capturePromises = true
 config.useColors = true
-config.requirePrefix = ''
+config.requirePrefix = '' // if using a different node_modules folder
 
 interact.start(config)

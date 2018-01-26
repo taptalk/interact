@@ -63,6 +63,20 @@ Internally we use Node's [REPL](https://nodejs.org/api/repl.html) module. The co
     config.ignoreUndefined = true
 
 
+### More config
+
+A more fancy `interact.js` setup file:
+
+    const interact = require('@leonardvandriel/interact')
+    const config = {}
+    config.imports = { fs: 'fs' }
+    config.capturePromises = true
+    config.useColors = true
+    config.historyFile = '.node_repl_history'
+    interact.start(config)
+
+More config options can be found in [interact.js](https://github.com/taptalk/interact/blob/master/interact.js).
+
 ## Tests
 
     npm test
