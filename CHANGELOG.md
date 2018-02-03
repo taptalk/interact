@@ -3,6 +3,8 @@ Change Log
 
 ### master (untagged)
 
+* Add promise indexing
+
 ### 0.1.2 (2018-01-26)
 
 * Fixes

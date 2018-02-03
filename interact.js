@@ -14,5 +14,7 @@ config.historyLength = 100
 config.capturePromises = true
 config.useColors = true
 config.requirePrefix = '' // if using a different node_modules folder
+config.waitPromises = 500
+config.prompt = '> '
 
 interact.start(config)

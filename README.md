@@ -73,6 +73,8 @@ A more fancy `interact.js` setup file:
     config.capturePromises = true
     config.useColors = true
     config.historyFile = '.node_repl_history'
+    config.waitPromises = 500
+
     interact.start(config)
 
 More config options can be found in [interact.js](https://github.com/taptalk/interact/blob/master/interact.js).
