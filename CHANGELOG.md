@@ -3,7 +3,9 @@ Change Log
 
 ### master (untagged)
 
-* Add promise indexing
+* Add promise index log
+* Fix promise underscore
+* Move to console file
 
 ### 0.1.2 (2018-01-26)
 
