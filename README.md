@@ -13,8 +13,9 @@ An interactive node console with auto-import, source reload, support for promise
 
     npm install @leonardvandriel/interact --save-dev
 
-Create a configuration file `console` in the project root:
+Create a configuration file `console` in the project root with content:
 
+    #!/usr/bin/env node
     const interact = require('@leonardvandriel/interact')
     interact.start()
 
@@ -53,7 +54,7 @@ All configuration is passed upon invoking `interact.start(..)` from `console` fi
     config.useColor = true
     interact.start(config)
 
-More config options can be found in the example [console](https://github.com/taptalk/interact/blob/master/console) file. Internally we use Node's [REPL](https://nodejs.org/api/repl.html) module.
+More options can be found in the example [console](https://github.com/taptalk/interact/blob/master/console) file. Internally we use Node's [REPL](https://nodejs.org/api/repl.html) module.
 
 
 ## Import and reload
@@ -85,8 +86,8 @@ This variable is now accessible in the REPL:
 
 Reloading will delete the import cache and re-import the modules. Some modules contain state that will be lost after reloading. To persist module state, we can temporarily save it during the reloading:
 
-    config.preLoad = (context, temp) => { temp.database = context.myclass.database }
-    config.postLoad = (context, temp) => { context.myclass.database = temp.database }
+    config.preLoad = (context, temp) => { if (context.myclass) temp.database = context.myclass.database }
+    config.postLoad = (context, temp) => { if (temp.database) context.myclass.database = temp.database }
 
 
 ## Promises

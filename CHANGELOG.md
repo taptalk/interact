@@ -3,6 +3,9 @@ Change Log
 
 ### master (untagged)
 
+* Rename config variables
+* Extend readme
+
 ### 0.1.3 (2018-02-05)
 
 * Add promise index log

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// load interact library
+// Import interact
 const interact = require('./lib/index')
 
 // Initialize configuration
@@ -25,16 +25,13 @@ config.capturePromise = true
 config.waitPromise = 500
 
 // Set to alter the filepath for storing command history. (default '.node_repl_history')
-config.historyFile = '.node_repl_history'
+// config.historyFile = '.node_repl_history'
 
-// Set to alter the require prefix, relative to the working dir of the REPL. (default '../')
-// config.requirePrefix = '../'
+// Set to alter the require prefix, relative to the working dir of the REPL. (default '../'*4)
+// config.requirePrefix = '../'.repeat(4)
 
 // Set to alter the prompt prefix. (default '> ')
 // config.prompt = '> '
-
-// Set to function invoked once after loading the REPL. (default null)
-// config.postInit = (context) => { context.myconstant = 1234 }
 
 // Set to function invoked on load and reload, before importing. (default null)
 // config.preLoad = (context, temp) => { temp = mystuff.export() }
@@ -42,4 +39,8 @@ config.historyFile = '.node_repl_history'
 // Set to function invoked on load and reload, after importing. (default null)
 // config.postLoad = (context, temp) => { mystuff.import(temp) }
 
+// Set to function invoked once after loading the REPL. (default null)
+// config.postInit = (context) => { context.myconstant = 1234 }
+
+// Start console
 interact.start(config)
