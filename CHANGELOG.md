@@ -3,6 +3,8 @@ Change Log
 
 ### master (untagged)
 
+### 0.2.0 (2018-02-06)
+
 * Rename config variables
 * Extend readme
 
