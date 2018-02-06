@@ -1,21 +1,45 @@
 #!/usr/bin/env node
 
-const interact = require('./lib/index.js')
+// load interact library
+const interact = require('./lib/index')
 
-const config = {}
+// Initialize configuration
+const config = { module: {} }
 
-config.imports = { fs: 'fs' }
-config.historyFile = '.node_repl_history'
+// Import modules to make them available in the REPL, e.g. to allow `fs.readFile(..)`.
+config.module.fs = 'fs'
+
+// Import your own modules, e.g. to allow `mystuff.myfunction(..)`
+// config.module.mystuff = './lib/mystuff.js'
+
+// Set to enable colorful output. (default false)
+config.useColor = true
+
+// Set the number of eval items to be stored in a history. (default 0)
 config.historyLength = 100
-config.capturePromises = true
-config.useColors = true
-config.requirePrefix = '' // if using a different node_modules folder
-config.waitPromises = 500
-config.prompt = '> '
 
-// config.postloads = [ context => console.log('\r1|5. postload') ]
-// config.inits = [ context => console.log('\r2. init') ]
-// config.persists = [ { get: context => console.log('\r3. persist get'), set: (context, value) => console.log('\r6. persist set') } ]
-// config.preloads = [ context => console.log('\r4. preload') ]
+// Set to not return promises, but wait for their evaluation instead. (default false)
+config.capturePromise = true
+
+// Set to wait (milliseconds) before assigning an index to the promise output. (default 0)
+config.waitPromise = 500
+
+// Set to alter the filepath for storing command history. (default '.node_repl_history')
+config.historyFile = '.node_repl_history'
+
+// Set to alter the require prefix, relative to the working dir of the REPL. (default '../')
+// config.requirePrefix = '../'
+
+// Set to alter the prompt prefix. (default '> ')
+// config.prompt = '> '
+
+// Set to function invoked once after loading the REPL. (default null)
+// config.postInit = (context) => { context.myconstant = 1234 }
+
+// Set to function invoked on load and reload, before importing. (default null)
+// config.preLoad = (context, temp) => { temp = mystuff.export() }
+
+// Set to function invoked on load and reload, after importing. (default null)
+// config.postLoad = (context, temp) => { mystuff.import(temp) }
 
 interact.start(config)

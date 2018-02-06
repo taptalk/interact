@@ -26,8 +26,8 @@ describe('#loadConfig', () => {
         let postload = 0
         let init = 0
         interact.loadConfig({}, {
-            postloads: [context => postload = (i += 1)],
-            inits: [context => init = (i += 1)],
+            postLoad: context => postload = (i += 1),
+            postInit: context => init = (i += 1),
         }, false)
         expect(postload).to.equal(1)
         expect(init).to.equal(2)
@@ -39,9 +39,9 @@ describe('#loadConfig', () => {
         let preload = 0
         let init = 0
         interact.loadConfig({}, {
-            postloads: [context => postload = (i += 1)],
-            preloads: [context => preload = (i += 1)],
-            inits: [context => init = (i += 1)],
+            postLoad: context => postload = (i += 1),
+            preLoad: context => preload = (i += 1),
+            postInit: context => init = (i += 1),
         }, true)
         expect(init).to.equal(0)
         expect(preload).to.equal(1)
