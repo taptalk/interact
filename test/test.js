@@ -25,12 +25,13 @@ describe('#loadConfig', () => {
         let i = 0
         let postload = 0
         let init = 0
-        interact.loadConfig({}, {
+        return interact.loadConfig({}, {
             postLoad: context => postload = (i += 1),
             postInit: context => init = (i += 1),
-        }, false)
-        expect(postload).to.equal(1)
-        expect(init).to.equal(2)
+        }, false).then(_ => {
+            expect(postload).to.equal(1)
+            expect(init).to.equal(2)
+        })
     })
 
     it('works with reload', () => {
@@ -38,13 +39,14 @@ describe('#loadConfig', () => {
         let postload = 0
         let preload = 0
         let init = 0
-        interact.loadConfig({}, {
+        return interact.loadConfig({}, {
             postLoad: context => postload = (i += 1),
             preLoad: context => preload = (i += 1),
             postInit: context => init = (i += 1),
-        }, true)
-        expect(init).to.equal(0)
-        expect(preload).to.equal(1)
-        expect(postload).to.equal(2)
+        }, true).then(_ => {
+            expect(init).to.equal(0)
+            expect(preload).to.equal(1)
+            expect(postload).to.equal(2)
+        })
     })
 })
