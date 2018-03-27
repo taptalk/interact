@@ -3,6 +3,10 @@ Change Log
 
 ### master (untagged)
 
+### 0.2.1 (2018-03-27)
+
+* Add async config
+
 ### 0.2.0 (2018-02-06)
 
 * Rename config variables
