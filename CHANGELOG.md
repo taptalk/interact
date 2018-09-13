@@ -3,6 +3,10 @@ Change Log
 
 ### master (untagged)
 
+### 0.2.2 (2018-09-13)
+
+* Add numbered underscore
+
 ### 0.2.1 (2018-03-27)
 
 * Add async config
