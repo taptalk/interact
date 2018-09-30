@@ -3,6 +3,8 @@ Change Log
 
 ### master (untagged)
 
+* Fix reverse history
+
 ### 0.2.2 (2018-09-13)
 
 * Add numbered underscore
